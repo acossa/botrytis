@@ -27,6 +27,9 @@
         <input id="tab3" type="radio" name="tabs">
         <label for="tab3">Access BcDb</label>
 
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4">Contact</label>
+
         <div class="content">
             <!-- Welcome -->
             <div id="content1">
@@ -50,6 +53,14 @@
                     ?>
                 </p>
             </div>
+
+            <!-- Contact -->
+            <div id="content4">
+                <p>
+                    <a href="mailto:antoine.cossa@u-psud.fr,elie.arnaud@u-psud.fr?subject=ProjetWeb">Contact us.</a>
+                </p>
+            </div>
+
         </div>
 
     </div>
