@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BcDb</title>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/content.css">
@@ -10,6 +11,11 @@
     <link rel="stylesheet" type="text/css" href="./DataTables/datatables.css">
     <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript" charset="utf8" src="./DataTables/datatables.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 <body>
