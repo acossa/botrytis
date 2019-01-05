@@ -3,7 +3,7 @@
 
   <?php
   try {
-      $dbh = new PDO('mysql:host=localhost;dbname=botrytis', 'lespinet', 'olivier');
+      $dbh = new PDO('mysql:host=localhost;dbname=botrytis', 'lespinet', '');
       $dbh = null;
   } catch (PDOException $e) {
       print "Erreur ! " . $e->getMessage() . "<br/>";
