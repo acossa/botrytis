@@ -40,8 +40,15 @@
 
             <!-- Infos -->
             <div id="content2">
-                <p>
+                <h1>
                     How to use BcDb
+                </h1>
+                <p>
+                    <ul>
+                        <li>You can browse the database by clicking on the "Access BcDb" menu.</li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </p>
             </div>
 
@@ -57,10 +64,9 @@
             <!-- Contact -->
             <div id="content4">
                 <p>
-                    <a href="mailto:antoine.cossa@u-psud.fr,elie.arnaud@u-psud.fr?subject=ProjetWeb">Contact us.</a>
+                    If you have any enquiries please feel free to <a href="mailto:bcdb.webmaster@outlook.com?subject=ProjetWeb">contact us</a>.</br>
                 </p>
             </div>
-
         </div>
 
     </div>

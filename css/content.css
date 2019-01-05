@@ -39,7 +39,7 @@ label {
   display: inline-block;
   margin: -2px;
   padding: 15px 25px;
-  width: 33.333%;
+  width: 25%;
   font-weight: 600;
   text-align: center;
   background-color: #1BA719;
@@ -58,7 +58,8 @@ input:checked + label {
 
 #tab1:checked ~ .content #content1,
 #tab2:checked ~ .content #content2,
-#tab3:checked ~ .content #content3 {
+#tab3:checked ~ .content #content3,
+#tab4:checked ~ .content #content4 {
   display: block;
 }
 
