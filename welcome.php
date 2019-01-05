@@ -46,8 +46,8 @@
                 <p>
                     <ul>
                         <li>You can browse the database by clicking on the "Access BcDb" menu.</li>
-                        <li></li>
-                        <li></li>
+                        <li>...</li>
+                        <li>...</li>
                     </ul>
                 </p>
             </div>
@@ -56,7 +56,7 @@
             <div id="content3">
                 <p>
                     <?php
-                    include('query_test.php'); /*Edit 'query.php' */
+                    include('query_form.php'); /*Edit 'query.php' */
                     ?>
                 </p>
             </div>
