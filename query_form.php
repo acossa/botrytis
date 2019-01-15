@@ -19,7 +19,7 @@
 
     // Fonction permettant de formatter correctement l'id de gene_locus : 00001
     function numFormat() {
-        num = document.getElementById('gene_number').value;
+        var num = document.getElementById('gene_number').value;
         if (num.length != 5) {
             if      (num.length == 1) { num = "0000".concat(num); }
             else if (num.length == 2) { num = "000".concat(num); }
