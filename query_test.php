@@ -1,8 +1,8 @@
 <!DOCTYPE PHP>
 <html>
     <?php
-        include("./functions.php");
-        
+        include("./include/functions.inc");
+
         try {
             $dbh = new PDO('mysql:host=localhost;dbname=botrytis', 'lespinet', '');
             // $dbh = null;
