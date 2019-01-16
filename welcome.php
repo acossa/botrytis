@@ -23,19 +23,19 @@
         Botrytis Cynerea Database
     </div>
     <div class="main">
+        <!-- <div class="main_menu"> -->
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label class="menu" for="tab1">Welcome</label>
 
-        <input id="tab1" type="radio" name="tabs" checked>
-        <label class="menu" for="tab1">Welcome</label>
+            <input id="tab2" type="radio" name="tabs">
+            <label class="menu" for="tab2">Tools</label>
 
-        <input id="tab2" type="radio" name="tabs">
-        <label class="menu" for="tab2">Tools</label>
+            <input id="tab3" type="radio" name="tabs">
+            <label class="menu" for="tab3">Access BcDb</label>
 
-        <input id="tab3" type="radio" name="tabs">
-        <label class="menu" for="tab3">Access BcDb</label>
-
-        <input id="tab4" type="radio" name="tabs">
-        <label class="menu" for="tab4">Contact</label>
-
+            <input id="tab4" type="radio" name="tabs">
+            <label class="menu" for="tab4">Contact</label>
+        <!-- </div> -->
         <div class="content">
             <!-- Welcome -->
             <div id="content1">
