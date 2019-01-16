@@ -1,6 +1,13 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
 
-*, *:before, *:after {margin: 0; padding: 0; box-sizing: border-box;}
+/* .main_menu, .main_menu:before, .main_menu:after {margin: 0; padding: 0; box-sizing: border-box;} */
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing:
+    border-box;
+}
+
 body {
   background-image: url("../data/Uva_rossa.JPG");
   color: black;
@@ -26,7 +33,7 @@ p {
   color: black;
 }
 
-.content > div {
+.content > #content1,#content2,#content3,#content4 {
   display: none;
   padding: 20px 25px 5px;
 }
@@ -35,7 +42,7 @@ input[name="tabs"] {
   display: none;
 }
 
-label {
+label.menu {
   display: inline-block;
   margin: -2px;
   padding: 15px 25px;
@@ -45,13 +52,13 @@ label {
   background-color: #1BA719;
 }
 
-label:hover {
+label.menu:hover {
   color: white;
   background: green;
   cursor: pointer;
 }
 
-input:checked + label {
+input[name="tabs"]:checked + label.menu {
   background: darkgreen;
   color: white;
 }

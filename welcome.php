@@ -25,16 +25,16 @@
     <div class="main">
 
         <input id="tab1" type="radio" name="tabs" checked>
-        <label for="tab1">Welcome</label>
+        <label class="menu" for="tab1">Welcome</label>
 
         <input id="tab2" type="radio" name="tabs">
-        <label for="tab2">Tools</label>
+        <label class="menu" for="tab2">Tools</label>
 
         <input id="tab3" type="radio" name="tabs">
-        <label for="tab3">Access BcDb</label>
+        <label class="menu" for="tab3">Access BcDb</label>
 
         <input id="tab4" type="radio" name="tabs">
-        <label for="tab4">Contact</label>
+        <label class="menu" for="tab4">Contact</label>
 
         <div class="content">
             <!-- Welcome -->

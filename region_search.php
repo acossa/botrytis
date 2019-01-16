@@ -27,29 +27,58 @@
             // echo "$region[1]</br>"; // TEST
 
             // Query
-            // try {
-            //     $dbh = new PDO('mysql:host=localhost;dbname=botrytis', 'lespinet', '');
-            //     $query_region = $dbh->query('SELECT gene_locus, gene_seq, gene_start, gene_stop, gene_length, gene_strand, gene_supercontig, gene_operon, trans_id FROM gene WHERE gene_start >= '.$region_start.' AND gene_stop <= '.$region_stop.';');
-            //
-            //     while ($row = $query_region->fetch(PDO::FETCH_ASSOC)) {
-            //         // print_r($row);
-            //         $locus = $row['gene_locus'];
-            //         $seq = $row['gene_seq'];
-            //         $start = $row['gene_start'];
-            //         $stop = $row['gene_stop'];
-            //         $length = $row['gene_length'];
-            //         $strand = $row['gene_strand'];
-            //         $supercontig = $row['gene_supercontig'];
-            //         $operon = $row['gene_operon'];
-            //         $trans = $row['trans_id'];
-            //     }
-            // } catch (PDOException $e) {
-            //     echo "Erreur ! " . $e->getMessage() . "<br/>";
-            //     die();
-            // } catch (Exception $ee) {
-            //     echo "Erreur ! " . $ee->getMessage() . "<br/>";
-            //     die();
-            // }
-            // ?>
+            try {
+                $dbh = new PDO('mysql:host=localhost;dbname=botrytis', 'lespinet', '');
+                $query_region = $dbh->query('SELECT gene_locus, gene_seq, gene_start, gene_stop, gene_length, gene_strand, gene_supercontig, gene_operon, trans_id FROM gene WHERE gene_start >= '.$region[0].' AND gene_stop <= '.$region[1].';');
+            } catch (PDOException $e) {
+                echo "Erreur ! " . $e->getMessage() . "<br/>";
+                die();
+            } catch (Exception $ee) {
+                echo "Erreur ! " . $ee->getMessage() . "<br/>";
+                die();
+            }
+            $colnames = array('Gene Locus', 'Gene Sequence', 'Start', 'Stop', 'Length', 'Strand', 'Supercontig', 'Gene Operon', 'Transcript');
+            ?>
 
+            <script>
+            $(document).ready(function() {
+                $('#table_region').DataTable();
+            } );
+            </script>
+            <table id="table_region" class="display" style="width:100%">
+                <thead>
+                    <!-- Colnames -->
+                    <?php foreach ($colnames as $col => $value) {
+                        echo '<th>'.$value.'</th>';
+                    }
+                    ?>
+                </thead>
+                <tbody>
+                    <?php
+                    try {
+                        while ($row = $query_region->fetch(PDO::FETCH_ASSOC)) {
+                            // print_r($row);
+                            echo '<tr>';
+                            foreach($row as $key=>$value) {
+                                // echo each value in a table box
+                                // echo $key.'</br>'; // TEST
+                                if ($key == "gene_seq") {
+                                    echo '<td style="word-break: break-all" width="33%" >'.$value.'</td>';
+                                } else if ($key == "gene_operon") {
+                                    echo '<td style="word-break: break-all" width="10%" >'.$value.'</td>';
+                                } else {
+                                    echo '<td style="text-align:center">'.$value.'</td>';
+                                }
+                            }
+                            echo '</tr>';
+                        }
+                    } catch (Exception $e) {
+                        echo "Erreur ! " . $e->getMessage() . "<br/>";
+                        die();
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </html>
