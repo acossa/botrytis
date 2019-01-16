@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="./css/content.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="DataTables\fixedHeader.dataTables.min.css">
+    <script type="text/javascript" src="./DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./DataTables\dataTables.fixedHeader.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
     </div>
     <div class="main">
         <div class="content">
-        <?php
+            <?php
             $region = "$_POST[field_region]";
             // echo "$region</br>"; // TEST
             $region = preg_split("/\s-\s/", $region);
@@ -42,7 +44,9 @@
 
             <script>
             $(document).ready(function() {
-                $('#table_region').DataTable();
+                $('#table_region').DataTable( {
+                    fixedHeader: true
+                });
             } );
             </script>
             <table id="table_region" class="display" style="width:100%">
@@ -81,4 +85,5 @@
             </table>
         </div>
     </div>
+</body>
 </html>

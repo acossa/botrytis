@@ -52,63 +52,64 @@
             // foreach ($columns as $key => $value) {
             //     echo $key . " : " . $value . "</br>";
             // }
-        ?>
-        <script>
-        $(document).ready(function() {
-            $('#table_gene').DataTable();
-        } );
-        </script>
-        <table id="table_gene" class="display" style="width:50%;align:center">
-            <tbody>
-                <tr>
-                    <td><b>Gene Locus</b></td>
-                    <td><?php echo $locus ?></td>
-                </tr>
-                <tr>
-                    <td><b>Sequence</b></td>
-                    <td style="word-break: break-all">
-                        <?php echo $seq ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td><b>Start</b></td>
-                    <td><?php echo $start ?></td>
-                </tr>
-                <tr>
-                    <td><b>Stop</b></td>
-                    <td><?php echo $stop ?></td>
-                </tr>
-                <tr>
-                    <td><b>Length</b></td>
-                    <td><?php echo $length ?></td>
-                </tr>
-                <tr>
-                    <td><b>Strand</b></td>
-                    <td><?php echo $strand ?></td>
-                </tr>
-                <tr>
-                    <td><b>Supercontig</b></td>
-                    <td><?php echo $supercontig ?></td>
-                </tr>
-                <?php
-                if ($operon != "") {
-                    echo '<tr>
-                        <td><b>Operon</b></td>
-                        <td><b>'.$operon.'</b></td>
-                    </tr>';
-                }
-                ?>
-                <tr>
-                    <td><b>Transcript ID</b></td>
-                    <td><?php echo $trans ?></td>
-                </tr>
-            </tbody>
-        </table>
+            ?>
+            <script>
+            $(document).ready(function() {
+                $('#table_gene').DataTable();
+            } );
+            </script>
+            <table id="table_gene" class="display" style="width:50%;align:center">
+                <tbody>
+                    <tr>
+                        <td><b>Gene Locus</b></td>
+                        <td><?php echo $locus ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Sequence</b></td>
+                        <td style="word-break: break-all">
+                            <?php echo $seq ?></br>
+                            <!-- Form to perform Blast research on sequence -->
+                            <form method="post" action="blastn.php" name="blast_n_form" target="_blank">
+                                <input type="hidden" name="seq" value="<?php $seq ?>">
+                                <button type="submit">Blast</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Start</b></td>
+                        <td><?php echo $start ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Stop</b></td>
+                        <td><?php echo $stop ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Length</b></td>
+                        <td><?php echo $length ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Strand</b></td>
+                        <td><?php echo $strand ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Supercontig</b></td>
+                        <td><?php echo $supercontig ?></td>
+                    </tr>
+                    <?php
+                    if ($operon != "") {
+                        echo '<tr>
+                            <td><b>Operon</b></td>
+                            <td><b>'.$operon.'</b></td>
+                        </tr>';
+                    }
+                    ?>
+                    <tr>
+                        <td><b>Transcript ID</b></td>
+                        <td><?php echo $trans ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-    <!-- Display of the gene informations -->
-    <!-- <table>
-
-
-    </table> -->
+</body>
 </html>
