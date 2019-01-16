@@ -55,7 +55,7 @@
 
     <!-- Queries by Region -->
     <form method="POST" action="region_search.php" name="region_form" target="_blank"><b>Search by region : </b>
-        <input type="text" id="amount" readonly maxlength="18" style="border:0; color:darkgreen; font-weight:bold;">
+        <input type="text" name="field_region" id="amount" readonly maxlength="18" style="border:0; color:darkgreen; font-weight:bold;">
         <input type="submit" name="submit_r" value="Search"></br> </br>
         <div id="slider-range" style="width:50%"></div>
     </form>

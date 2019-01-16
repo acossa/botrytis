@@ -1,5 +1,5 @@
 <?php
-
+// Les fonctions suivantes ne sont pas utilisees dans la version actuelle, probablement a supprimer...
 function echo_results($query) {
     echo '
     <table id="query" class="display" width="100%" cellspacing="0">

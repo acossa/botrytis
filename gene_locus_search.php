@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BcDb</title>
+    <title>Gene view</title>
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/content.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">

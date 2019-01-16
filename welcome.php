@@ -84,7 +84,7 @@
                     Documentation
                     <ul>
                         <li>
-                            About <i>B. cynerea</i>
+                            About <i>Botrytis cynerea</i>
                         </li>
                     </ul>
                 </th>
