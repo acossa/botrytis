@@ -99,7 +99,7 @@
                 }
                 ?>
                 <tr>
-                    <td><b>Transcrit</b></td>
+                    <td><b>Transcript</b></td>
                     <td><?php echo $trans ?></td>
                 </tr>
             </tbody>
