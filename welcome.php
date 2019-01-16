@@ -49,11 +49,25 @@
                 <h1>
                     How to use BcDb
                 </h1>
-                <p>
+                <p width=50% style="align: center"> <!-- Les params ne marchent pas apparemment -->
                     <ul>
-                        <li>You can browse the database by clicking on the "Access BcDb" menu.</li>
-                        <li>...</li>
-                        <li>...</li>
+                        <li>
+                            This website presents omics data from the fungus <i>Botrytis cinerea</i>, more commonly called gray mould. You can browse the database by clicking on the "Access BcDb" menu. In that section you will be able to search the database by using a specific gene locus, or browse by region or by protein name.
+                        </li>
+                        <li>
+                            If you want more informations about <i>Botrytis cinerea</i>, here is its <a href="https://en.wikipedia.org/wiki/Botrytis_cinerea" target="_blank">Wikipedia page</a>. If you want to browse recent articles you can clic on one of the following links:
+                            <ul>
+                                <li>
+                                    &emsp;<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=botrytis+cinerea" target="_blank">PubMed<a>
+                                </li>
+                                <li>
+                                    &emsp;<a href="https://www.researchgate.net/search?q=botrytis%20cinerea" target="_blank">ResearchGate<a>
+                                </li>
+                                <li>
+                                    &emsp;<a href="https://scholar.google.fr/scholar?hl=fr&as_sdt=0%2C5&as_vis=1&q=botrytis+cinerea&btnG=" target="_blank">Google Scholar<a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </p>
             </div>
@@ -78,18 +92,19 @@
     </div>
 
     <div class="footer">
-        <table>
+        <!-- <table>
             <tr>
                 <th>
                     Documentation
                     <ul>
                         <li>
-                            About <i>Botrytis cynerea</i>
-                        </li>
+                             About <i>Botrytis cynerea</i> -->
+                            <p>Botrytis cinerea Database 2019</p>
+                        <!-- </li>
                     </ul>
                 </th>
             </tr>
-        </table>
+        </table> -->
     </div>
 </body>
 </html>
