@@ -28,7 +28,7 @@
             <label class="menu" for="tab1">Welcome</label>
 
             <input id="tab2" type="radio" name="tabs">
-            <label class="menu" for="tab2">Tools</label>
+            <label class="menu" for="tab2">Tools description</label>
 
             <input id="tab3" type="radio" name="tabs">
             <label class="menu" for="tab3">Access BcDb</label>
