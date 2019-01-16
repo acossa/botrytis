@@ -80,11 +80,11 @@
                 </tr>
                 <tr>
                     <td><b>Length</b></td>
-                    <td><?php echo $locus ?></td>
+                    <td><?php echo $length ?></td>
                 </tr>
                 <tr>
                     <td><b>Strand</b></td>
-                    <td><?php echo $locus ?></td>
+                    <td><?php echo $strand ?></td>
                 </tr>
                 <tr>
                     <td><b>Supercontig</b></td>
