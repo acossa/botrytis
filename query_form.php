@@ -82,6 +82,7 @@
         <input type="submit" name=submit_p value="Search">
     </form>
     </br>
+    <a href="blast.php">BLAST Tool</a>
 
     <!-- Display of the query results -->
     <div>

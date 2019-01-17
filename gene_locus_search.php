@@ -18,7 +18,7 @@
         Botrytis Cynerea Database
     </div>
     <div class="main">
-        <div class="content">
+        <div class="content" id="gene_search">
         <?php
             $gene_locus = "BC1G_$_POST[gene_number]";
             // echo "$gene_locus</br>"; // TEST
@@ -58,7 +58,7 @@
                 $('#table_gene').DataTable();
             } );
             </script>
-            <table id="table_gene" class="display" style="width:50%;align:center">
+            <table id="table_gene" class="display" style="align:center">
                 <tbody>
                     <tr>
                         <td><b>Gene Locus</b></td>
@@ -69,10 +69,10 @@
                         <td style="word-break: break-all">
                             <?php echo $seq ?></br>
                             <!-- Form to perform Blast research on sequence -->
-                            <form method="post" action="blastn.php" name="blast_n_form" target="_blank">
-                                <input type="hidden" name="seq" value="<?php $seq ?>">
+                            <!-- <form method="POST" action="blastn.php" name="blast_n_form" target="_blank">
+                                <input type="hidden" name="seq" value="<?php //$seq ?>">
                                 <button type="submit">Blast</button>
-                            </form>
+                            </form> -->
                         </td>
                     </tr>
                     <tr>

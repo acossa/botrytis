@@ -23,7 +23,7 @@
         <div class="content">
         <?php
             $prot = "$_POST[field_prot_name]";
-            echo "$prot</br>"; // TEST
+            // echo "$prot</br>"; // TEST
 
             // Query
             try {

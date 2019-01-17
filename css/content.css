@@ -27,9 +27,14 @@ p {
 }
 
 .content {
-  margin: 10px;
+  margin: 10px auto;
+  padding: 20px;
   background: white;
   color: black;
+}
+
+.content#gene_search,.content#content2 {
+    width: 75%;
 }
 
 .content > #content1,#content2,#content3,#content4 {
