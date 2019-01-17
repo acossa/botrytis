@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="./css/header.css">
     <link rel="stylesheet" type="text/css" href="./css/content.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
-    <!-- <link rel="stylesheet" type="text/css" href="./DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
     <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script> -->
+    <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
     <script>
     function isEmpty() {
 
@@ -38,12 +38,16 @@
             <p>
                 <?php
                 $flag = false;
-                if (!isset($seq)) { $seq = ""; }
+                // if (!isset($seq)) {
+                //     $seq = "";
+                // } else {
+                //     $seq = $_POST['input_seq'];
+                // }
                 ?>
                 <h1>Blast</h1></br>
                 <h3>Paste your nucleotide or protein sequence here:</h3></br>
                 <form method="POST" name="blast_form" id="blast_form" style="margin:5px">
-                    <textarea form="blast_form" name="blast_seq" id="input_seq" value="<?php $seq ?>" required rows="10" cols="50"></textarea></br>
+                    <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if(isset($seq)) echo('value="'.$seq.'"'); ?> required rows="10" cols="50"></textarea></br>
                     Select the type of your sequence:
                     <input type="radio" name="radio_blast" value="N"> Nucleotide</input>
                     <input type="radio" name="radio_blast" value="P"> Protein</input></br>
@@ -54,17 +58,20 @@
             <!-- Display Blast results -->
             <div>
                 <?php
-                if (isset($_POST["input_seq"]) && isset($_POST["radio_blast"])) { // && $flag==true
+                // print_r($_POST['blast_seq']); // TEST
+                // var_dump(isset($_POST["blast_seq"])); // TEST
+                // var_dump(isset($_POST["radio_blast"])); // TEST
+                if (isset($_POST["blast_seq"]) && isset($_POST["radio_blast"])) { // && $flag==true
                     // On suppose pour l'instant que les sequences entrees sont correctes...
                     $seq = $_POST["blast_seq"];
                     $type = $_POST["radio_blast"];
-                    echo $seq."</br>"; // TEST
-                    echo $type."</br>"; // TEST
+                    // echo $seq."</br>"; // TEST
+                    // echo $type."</br>"; // TEST
 
                     // Creation/opening of the query file
-                    $blast_file = fopen('blast/blast.fasta', 'a+'); // potentiellement remplacer a+ par a si tout fonctionne !!!!!!!!!!
+                    $blast_file = fopen('blast/blast.fasta', 'a+'); // potentiellement remplacer a+ par a si tout fonctionne
                     fputs($blast_file, $seq);
-                    fclose($blast_file); // TEST
+                    fclose($blast_file);
 
                     // echo exec('whoami'); // TEST
                     if ($type == "N") { // Nucleotide sequence
@@ -82,14 +89,14 @@
 
                     $colnames = array('Subject ID', 'Query Length', 'Subject Length', 'Subject Start', 'Subject Stop', 'Alignment length', 'E-value');
                     ?>
-                    <!-- <script>
+                    <script>
                     $(document).ready(function() {
                         $('#table_blast').DataTable( {
                             fixedHeader: true
                         });
-                    } ); -->
+                    } );
                     </script>
-                    <table id="table_blast" class="display" style="width:100%">
+                    <table id="table_blast" class="display" style="width:100%; text-align:center;">
                         <thead>
                             <!-- Colnames -->
                             <?php
@@ -108,7 +115,7 @@
                                     $row++;
                                     echo "<tr>";
                                     for ($i=0; $i < $num; $i++) {
-                                        echo "<td>".$data[$i]."</td></br>\n";
+                                        echo "<td>".$data[$i]."</td>\n";
                                     }
                                     echo "</tr>";
                                 }
@@ -117,8 +124,8 @@
                             ?>
                         </tbody>
                     </table>
-                    <?php
-                } ?>
+
+                <?php } ?>
             </div>
         </div>
     </div>
