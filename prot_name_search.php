@@ -42,6 +42,10 @@
             <script>
             $(document).ready(function() {
                 $('#table_prot').DataTable();
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'pdf'
+                ]
             } );
             </script>
             <table id="table_prot" class="display" style="width:100%">
@@ -61,7 +65,14 @@
                             foreach($row as $key=>$value) {
                                 // echo each value in a table box
                                 // echo $key.'</br>'; // TEST
-                                if ($key == "prot_seq") {
+                                if ($key == "gene_locus") {
+                                    echo '<td style="text-align:center">' . $value . '
+                                    <form method="POST" action="gene_locus_search.php" target="_blank">
+                                    <input type="hidden" name="gene_number" id="gene_number" value="'.$value.'">
+                                    <input type="submit" value=" View gene ">
+                                    </form>
+                                    </td>';
+                                } else if ($key == "prot_seq") {
                                     echo '<td style="word-break: break-all" width="33%" >'.$value.'</td>';
                                 } else {
                                     echo '<td style="text-align:center">'.$value.'</td>';
@@ -77,6 +88,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="footer">
+        <p>Botrytis cinerea Database 2019</p>
     </div>
 </body>
 </html>

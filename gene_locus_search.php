@@ -13,6 +13,11 @@
     <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="./DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="./DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="./DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/buttons.html5.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +27,11 @@
     <div class="main">
         <div class="content" id="gene_search">
         <?php
-            $gene_locus = "BC1G_$_POST[gene_number]";
+            if (preg_match("/BC1G_/", $_POST['gene_number'])) {
+                $gene_locus = "$_POST[gene_number]";
+            } else {
+                $gene_locus = "BC1G_$_POST[gene_number]";
+            }
             // echo "$gene_locus</br>"; // TEST
 
             // Query
@@ -66,85 +75,172 @@
             ?>
             <script>
             $(document).ready(function() {
-                $('#table_gene').DataTable();
+                $('#table_gene').DataTable( {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'pdf'
+                    ]
+                } );
             } );
             </script>
             <table id="table_gene" class="display" style="align:center">
                 <tbody>
                     <tr>
                         <td><b>Gene Locus</b></td>
-                        <td><?php echo $locus ?></td>
+                        <td colspan="2"><?php echo $locus ?></td>
                     </tr>
                     <tr>
                         <td><b>Sequence</b></td>
-                        <td style="word-break: break-all">
+                        <td colspan="2" style="word-break: break-all">
                             <?php echo $seq ?></br>
-                            <!-- Form to perform Blast research on sequence -->
-                            <!-- <form method="POST" action="blastn.php" name="blast_n_form" target="_blank">
-                                <input type="hidden" name="seq" value="<?php //$seq ?>">
-                                <button type="submit">Blast</button>
-                            </form> -->
                         </td>
                     </tr>
                     <tr>
                         <td><b>Start</b></td>
-                        <td><?php echo $start ?></td>
+                        <td colspan="2"><?php echo $start ?></td>
                     </tr>
                     <tr>
                         <td><b>Stop</b></td>
-                        <td><?php echo $stop ?></td>
+                        <td colspan="2"><?php echo $stop ?></td>
                     </tr>
                     <tr>
                         <td><b>Length</b></td>
-                        <td><?php echo $length ?></td>
+                        <td colspan="2"><?php echo $length ?></td>
                     </tr>
                     <tr>
                         <td><b>Strand</b></td>
-                        <td><?php echo $strand ?></td>
+                        <td colspan="2"><?php echo $strand ?></td>
                     </tr>
                     <tr>
                         <td><b>Supercontig</b></td>
-                        <td><?php echo $supercontig ?></td>
+                        <td colspan="2"><?php echo $supercontig ?></td>
                     </tr>
                     <tr>
                         <td><b>Transcript ID</b></td>
-                        <td><?php echo $trans ?></td>
+                        <td colspan="2"><?php echo $trans ?></td>
                     </tr>
 
                      <!-- Display Protein informations -->
                     <tr>
                         <td><b>Protein name</b></td>
-                        <td><?php echo $prot_name ?></td>
+                        <td colspan="2"><?php echo $prot_name ?></td>
                     </tr>
                     <tr>
                         <td><b>Protein Sequence</b></td>
-                        <td  style="word-break: break-all">
+                        <td  colspan="2" style="word-break: break-all">
                             <?php echo $prot_seq ?>
                         </td>
                     </tr>
                     <tr>
                         <td><b>Protein Length</b></td>
-                        <td><?php echo $prot_length ?></td>
+                        <td colspan="2"><?php echo $prot_length ?></td>
                     </tr>
                     <?php
                     if ($operon != "") {
-                        echo
-                        '<tr>
-                            <td><b>Pfam</b></td>
-                            <td><b>';
                         $pfam = preg_split("/;/", $operon);
-                        foreach ($pfam as $key => $value) {
-                            echo '<a href="https://pfam.xfam.org/family/'.$value.'" target="_blank" title="Pfam webpage of '.$value.'">'.$value.'</a>; ';
-                        }
                         echo
-                        '</b></td>
+                        '<th scope="rowgroup" rowspan="'.(count($pfam)*8+1).'">
+                            <b>Pfam</b>
+                        </th>';
+
+                        foreach ($pfam as $key => $value) {
+                            // Link to Pfam website
+                            echo '
+                            <tr>
+                            <th scope="colgroup" colspan="2">
+                                <a href="https://pfam.xfam.org/family/'.$value.'" target="_blank" title="Pfam webpage of '.$value.'">'.$value.'</a>
+                            </th>';
+                            try {
+                                $query_pfam = $dbh->query('SELECT MIN(id), pfam_name, pfam_description, pfam_start, pfam_stop, pfam_length, pfam_score, pfam_expected FROM pfam WHERE pfam_locus = "'.$locus.'" AND prot_name = "'.$prot_name.'" AND pfam_acc = "'.$value.'";');
+
+                                while ($l = $query_pfam->fetch(PDO::FETCH_ASSOC)) {
+                                    // print_r($row); // TEST
+                                    $pfam_name = $l['pfam_name'];
+                                    $pfam_desc = $l['pfam_description'];
+                                    $pfam_start = $l['pfam_start'];
+                                    $pfam_stop = $l['pfam_stop'];
+                                    $pfam_length = $l['pfam_length'];
+                                    $pfam_score = $l['pfam_score'];
+                                    $pfam_eval = $l['pfam_expected'];
+                                }
+                            } catch (PDOException $e) {
+                                echo "Erreur ! " . $e->getMessage() . "<br/>";
+                                die();
+                            } catch (Exception $ee) {
+                                echo "Erreur ! " . $ee->getMessage() . "<br/>";
+                                die();
+                            }
+
+                            // Display the Pfam results foreach Pfam accession id
+                            echo '
+                            <tr>
+                                <td><b>
+                                    Name
+                                </b></td>
+                                <td>
+                                    '.$pfam_name.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    Description
+                                </b></td>
+                                <td>
+                                    '.$pfam_desc.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    Start
+                                </b></td>
+                                <td>
+                                    '.$pfam_start.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    Stop
+                                </b></td>
+                                <td>
+                                    '.$pfam_stop.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    Length
+                                </b></td>
+                                <td>
+                                    '.$pfam_length.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    Score
+                                </b></td>
+                                <td>
+                                    '.$pfam_score.'
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>
+                                    E-value
+                                </b></td>
+                                <td>
+                                    '.$pfam_eval.'
+                                </td>
+                            </tr>
                         </tr>';
+                        }
+
                     }
                     ?>
 
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="footer">
+        <p>Botrytis cinerea Database 2019</p>
     </div>
 </body>
 </html>
