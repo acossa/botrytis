@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="./css/content.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./DataTables/Buttons-1.5.4/css/buttons.dataTables.min.css">
     <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
     <script>
     function isEmpty() {
 
@@ -48,7 +50,7 @@
                 <h3>Paste your nucleotide or protein sequence here:</h3></br>
                 <form method="POST" name="blast_form" id="blast_form" style="margin:5px">
                     <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if(isset($seq)) echo('value="'.$seq.'"'); ?> required rows="10" cols="50"></textarea></br>
-                    Select the type of your sequence: 
+                    Select the type of your sequence:
                     <input type="radio" name="radio_blast" value="N"> Nucleotide</input>
                     <input type="radio" name="radio_blast" value="P"> Protein</input></br>
                     <input type="submit" name="submit_blast" value=" Submit " onclick="isEmpty()">
@@ -95,8 +97,12 @@
                     <script>
                     $(document).ready(function() {
                         $('#table_blast').DataTable( {
-                            fixedHeader: true
-                            "searching": false
+                            // fixedHeader: true
+                            "searching": false,
+                            dom: 'Bfrtip',
+                            buttons: [
+                                'copy', 'csv', 'pdf'
+                            ]
                         });
                     } );
                     </script>
