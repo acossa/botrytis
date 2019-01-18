@@ -48,7 +48,7 @@
                 <h3>Paste your nucleotide or protein sequence here:</h3></br>
                 <form method="POST" name="blast_form" id="blast_form" style="margin:5px">
                     <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if(isset($seq)) echo('value="'.$seq.'"'); ?> required rows="10" cols="50"></textarea></br>
-                    Select the type of your sequence:
+                    Select the type of your sequence: 
                     <input type="radio" name="radio_blast" value="N"> Nucleotide</input>
                     <input type="radio" name="radio_blast" value="P"> Protein</input></br>
                     <input type="submit" name="submit_blast" value=" Submit " onclick="isEmpty()">
@@ -62,9 +62,12 @@
                 // var_dump(isset($_POST["blast_seq"])); // TEST
                 // var_dump(isset($_POST["radio_blast"])); // TEST
                 if (isset($_POST["blast_seq"]) && isset($_POST["radio_blast"])) { // && $flag==true
-                    // On suppose pour l'instant que les sequences entrees sont correctes...
-                    $seq = $_POST["blast_seq"];
-                    $type = $_POST["radio_blast"];
+                    echo '</br><h1>Result(s) of your query:</h1></br>';
+                    // Strip all special chars in html entities: eg. > & --> &gt; &amp;
+                    $seq = htmlspecialchars($_POST["blast_seq"]);
+                    if ($_POST["radio_blast"] == ("N"||"P")) {
+                        $type = $_POST["radio_blast"];
+                    }
                     // echo $seq."</br>"; // TEST
                     // echo $type."</br>"; // TEST
 
@@ -75,10 +78,10 @@
 
                     // echo exec('whoami'); // TEST
                     if ($type == "N") { // Nucleotide sequence
-                        // Execute the BLAST query
+                        // Execute the BLASTn query
                         exec('blastn -query blast/blast.fasta -db blast/blast_bcdb_gene -outfmt "10 sseqid qlen slen sstart send length evalue" -out blast/blast_res.bl 2>&1');
                     } else if ($type == "P") { // Protein sequence
-                        // Execute the BLAST query
+                        // Execute the BLASTp query
                         exec('blastp -query blast/blast.fasta -db  blast/blast_bcdb_prot -outfmt "10 sseqid qlen slen sstart send length evalue" -out blast/blast_res.bl 2>&1');
                     }
 
@@ -93,6 +96,7 @@
                     $(document).ready(function() {
                         $('#table_blast').DataTable( {
                             fixedHeader: true
+                            "searching": false
                         });
                     } );
                     </script>
@@ -106,12 +110,12 @@
                             ?>
                         </thead>
                         <tbody>
+                            <!-- Function used to display the content of the csv file as a table -->
                             <?php
                             $row = 1;
                             if (($handle = fopen("blast/blast_res.bl", "r")) !== FALSE) {
                                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                                     $num = count($data);
-                                    // echo "<p> $num champs à la ligne $row: <br /></p>\n";
                                     $row++;
                                     echo "<tr>";
                                     for ($i=0; $i < $num; $i++) {
@@ -124,7 +128,6 @@
                             ?>
                         </tbody>
                     </table>
-
                 <?php } ?>
             </div>
         </div>
