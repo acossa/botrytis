@@ -234,9 +234,12 @@
 
                     }
                     ?>
-
                 </tbody>
             </table>
+            <!-- <?php
+            // exec('"C:/Program Files/R/R-3.5.2/bin/Rscript.exe" "C:/wamp64/www/botrytis/data/hydro.r" "'.$prot_seq.'" 21', $result);
+            ?>
+            <img src="data/hydro.jpg"> -->
         </div>
     </div>
     <div class="footer">

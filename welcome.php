@@ -40,7 +40,7 @@
             <!-- Welcome -->
             <div id="content1">
                 <p>
-                    Welcome to BcDb
+                    <h1>Welcome to BcDb</h1>
                 </p>
             </div>
 
