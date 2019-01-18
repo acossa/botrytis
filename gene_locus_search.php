@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="./css/content.css">
     <link rel="stylesheet" type="text/css" href="./css/footer.css">
     <link rel="stylesheet" type="text/css" href="./DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./DataTables/Buttons-1.5.4/css/buttons.dataTables.min.css">
     <script type="text/javascript" src="DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
                 $query_gene = $dbh->query('SELECT gene_locus, gene_seq, gene_start, gene_stop, gene_length, gene_strand, gene_supercontig, gene_operon, trans_id FROM gene WHERE gene_locus = "'.$gene_locus.'";');
 
                 while ($row = $query_gene->fetch(PDO::FETCH_ASSOC)) {
-                    // print_r($row);
+                    // print_r($row); // TEST
                     $locus = $row['gene_locus'];
                     $seq = $row['gene_seq'];
                     $start = $row['gene_start'];
@@ -39,6 +41,15 @@
                     $supercontig = $row['gene_supercontig'];
                     $operon = $row['gene_operon'];
                     $trans = $row['trans_id'];
+                }
+
+                $query_prot = $dbh->query('SELECT prot_name,prot_seq, prot_length FROM protein WHERE gene_locus = "'.$locus.'" AND trans_id = "'.$trans.'";');
+
+                while ($line = $query_prot->fetch(PDO::FETCH_ASSOC)) {
+                    // print_r($row);
+                    $prot_name = $line['prot_name'];
+                    $prot_seq = $line['prot_seq'];
+                    $prot_length = $line['prot_length'];
                 }
             } catch (PDOException $e) {
                 echo "Erreur ! " . $e->getMessage() . "<br/>";
@@ -95,18 +106,42 @@
                         <td><b>Supercontig</b></td>
                         <td><?php echo $supercontig ?></td>
                     </tr>
-                    <?php
-                    if ($operon != "") {
-                        echo '<tr>
-                            <td><b>Operon</b></td>
-                            <td><b>'.$operon.'</b></td>
-                        </tr>';
-                    }
-                    ?>
                     <tr>
                         <td><b>Transcript ID</b></td>
                         <td><?php echo $trans ?></td>
                     </tr>
+
+                     <!-- Display Protein informations -->
+                    <tr>
+                        <td><b>Protein name</b></td>
+                        <td><?php echo $prot_name ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Protein Sequence</b></td>
+                        <td  style="word-break: break-all">
+                            <?php echo $prot_seq ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Protein Length</b></td>
+                        <td><?php echo $prot_length ?></td>
+                    </tr>
+                    <?php
+                    if ($operon != "") {
+                        echo
+                        '<tr>
+                            <td><b>Pfam</b></td>
+                            <td><b>';
+                        $pfam = preg_split("/;/", $operon);
+                        foreach ($pfam as $key => $value) {
+                            echo '<a href="https://pfam.xfam.org/family/'.$value.'" target="_blank" title="Pfam webpage of '.$value.'">'.$value.'</a>; ';
+                        }
+                        echo
+                        '</b></td>
+                        </tr>';
+                    }
+                    ?>
+
                 </tbody>
             </table>
         </div>
