@@ -8,4 +8,4 @@ BcDb is a website project done for a web programming class. It aims to use the o
 - ... WORK IN PROGRESS ...
 
 ## Database UML
-![This is the database UML](https://github.com/4N701N3/botrytis/data/UML_BcDb.png)
+![This is the database UML](https://github.com/4N701N3/botrytis/data/UML_BcDb.png "BcDb UML")
