@@ -20,7 +20,7 @@
         Botrytis Cynerea Database
     </div>
     <div class="main">
-        <div class="content">
+        <div class="content" id="region_search">
             <?php
             $region = "$_POST[field_region]";
             // echo "$region</br>"; // TEST
