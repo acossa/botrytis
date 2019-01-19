@@ -9,6 +9,8 @@
 
 body {
   background-image: url("../data/Uva_rossa.JPG");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: black;
   font: 14px 'Open Sans', sans-serif;
 }
@@ -40,6 +42,7 @@ p {
 }
 
 .content#region_search {
+    min-width: 900px;
     width: 100%;
 }
 

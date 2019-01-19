@@ -39,16 +39,12 @@
         <div class="content" id="main">
             <!-- Welcome -->
             <div id="content1">
-                <p>
-                    <h1>Welcome to BcDb</h1>
-                </p>
+                <h1>Welcome to BcDb</h1>
             </div>
 
             <!-- Infos -->
             <div id="content2">
-                <h1>
-                    How to use BcDb
-                </h1>
+                <h1>How to use BcDb</h1>
                 <div style="width:75%; margin: 0 auto;">
                     <p>
                         <ul>
@@ -76,11 +72,9 @@
 
             <!-- Queries -->
             <div id="content3">
-                <p>
-                    <?php
-                    include('query_form.php'); /*Edit 'query.php' */
-                    ?>
-                </p>
+                <?php
+                include('query_form.php'); /*Edit 'query.php' */
+                ?>
             </div>
 
             <!-- Blast -->
