@@ -35,10 +35,13 @@
                     $seq = $_POST['blast_seq'];
                 }
                 ?>
-                <h1>Blast</h1></br>
-                <h3>Paste your nucleotide or protein sequence here:</h3></br>
+                <h1>Blast</h1>
+                </br>
+                </br>
                 <form method="POST" name="blast_form" id="blast_form" style="margin:5px">
-                    <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if($seq!="") { echo('value="'.$seq.'" '); } ?> required rows="10" cols="55"></textarea></br>
+                    <textarea form="blast_form" name="blast_seq" id="input_seq" required autofocus rows="10" cols="55" placeholder="Paste your nucleotide or protein sequence here...">
+                        <?php if($seq!="") { echo('value="'.$seq.'" '); } ?>
+                    </textarea></br>
                     Select the type of your sequence:
                     <input type="radio" name="radio_blast" required value="N"> Nucleotide</input>
                     <input type="radio" name="radio_blast" value="P"> Protein</input></br>
