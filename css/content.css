@@ -19,11 +19,15 @@ p {
 }
 
 .main {
-  margin: 120px 0px auto;
-  min-width: 320px;
+  margin: 100px 0px auto;
+  min-width: 750px;
   width: 100%;
   min-height: 100px;
   height: 100%;
+}
+
+.content h1 {
+    text-align: center;
 }
 
 .content {
@@ -32,10 +36,11 @@ p {
   padding: 20px;
   background: white;
   color: black;
+  width: 950px;
 }
 
-.content#gene_search,.content#content2 {
-    width: 75%;
+.content#region_search {
+    width: 100%;
 }
 
 .content > #content1,#content2,#content3,#content4 {
@@ -74,5 +79,17 @@ input[name="tabs"]:checked + label.menu {
 #tab4:checked ~ .content #content4 {
   display: block;
 }
+
+.blast {
+    margin: 10px auto;
+}
+
+/* input[name="gene_number"]:invalid {
+  border: 2px solid red;
+}
+
+input[name="gene_number"]:valid {
+  border: 2px solid lime;
+} */
 
 @media screen and (max-width: 400px) { label {padding: 15px 10px;} }

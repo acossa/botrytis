@@ -19,23 +19,6 @@
     <script type="text/javascript" src="./DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/buttons.html5.min.js"></script>
 
-    <script>
-    function isEmpty() {
-
-        var inseq = document.getElementById('input_seq').value;
-        var inrad = document.getElementById('radio_blast').value;
-
-        if (inseq == "") {
-            alert("Please enter a sequence in the field!");
-        } else if (inrad == "") {
-            alert("Please select the type of your sequence!");
-        } else if (inseq == "" && inrad == "") {
-            alert("Please enter a sequence in the field and select its type!");
-        } else {
-            <?php $flag = true; ?>
-        }
-    }
-    </script>
 </head>
 <body>
     <div class="heading">
@@ -46,20 +29,20 @@
             <p>
                 <?php
                 $flag = false;
-                // if (!isset($seq)) {
-                //     $seq = "";
-                // } else {
-                //     $seq = $_POST['input_seq'];
-                // }
+                if (!isset($seq)) {
+                    $seq = "";
+                } else {
+                    $seq = $_POST['blast_seq'];
+                }
                 ?>
                 <h1>Blast</h1></br>
                 <h3>Paste your nucleotide or protein sequence here:</h3></br>
                 <form method="POST" name="blast_form" id="blast_form" style="margin:5px">
-                    <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if(isset($seq)) echo('value="'.$seq.'"'); ?> required rows="10" cols="50"></textarea></br>
+                    <textarea form="blast_form" name="blast_seq" id="input_seq" <?php if($seq!="") { echo('value="'.$seq.'" '); } ?> required rows="10" cols="55"></textarea></br>
                     Select the type of your sequence:
-                    <input type="radio" name="radio_blast" value="N"> Nucleotide</input>
+                    <input type="radio" name="radio_blast" required value="N"> Nucleotide</input>
                     <input type="radio" name="radio_blast" value="P"> Protein</input></br>
-                    <input type="submit" name="submit_blast" value=" Submit " onclick="isEmpty()">
+                    <input type="submit" name="submit_blast" value=" Submit " style="margin-top:5px">
                 </form>
             </p>
 

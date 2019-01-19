@@ -36,7 +36,7 @@
             <input id="tab4" type="radio" name="tabs">
             <label class="menu" for="tab4">Contact</label>
         <!-- </div> -->
-        <div class="content">
+        <div class="content" id="main">
             <!-- Welcome -->
             <div id="content1">
                 <p>
@@ -49,7 +49,7 @@
                 <h1>
                     How to use BcDb
                 </h1>
-                <div style="width:50%">
+                <div style="width:75%; margin: 0 auto;">
                     <p>
                         <ul>
                             <li>
@@ -94,6 +94,10 @@
 
             <!-- Contact -->
             <div id="content4">
+                <h1>
+                    Contact
+                </h1>
+                </br>
                 <p>
                     If you have any enquiries please feel free to <a href="mailto:bcdb.webmaster@outlook.com?subject=ProjetWeb">contact us</a>.</br>
                 </p>
