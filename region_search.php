@@ -13,6 +13,12 @@
     <script type="text/javascript" src="./DataTables/jQuery-3.3.1/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="./DataTables\dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="./DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="./DataTables/JSZip-2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="./DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="./DataTables/Buttons-1.5.4/js/buttons.html5.min.js"></script>
 </head>
 
 <body>
@@ -39,13 +45,22 @@
                 echo "Erreur ! " . $ee->getMessage() . "<br/>";
                 die();
             }
-            $colnames = array('Gene Locus', 'Gene Sequence', 'Start', 'Stop', 'Length', 'Strand', 'Supercontig', 'Gene Operon', 'Transcript');
+            $colnames = array('Gene Locus', 'Gene Sequence', 'Start', 'Stop', 'Length', 'Strand', 'Supercontig', 'Pfam', 'Transcript');
             ?>
 
             <script>
             $(document).ready(function() {
                 $('#table_region').DataTable( {
-                    fixedHeader: true
+                    dom: 'Bfrtip',
+                    buttons: [
+                        { extend: 'csv', text: 'Download as CSV' }    
+                    ],
+                    fixedHeader: true,
+                    "autoWidth": false,
+                    "columnDefs": [
+                        { "width": "500px", "targets": 1 }
+                    ],
+                    "scrollX": true
                 });
             } );
             </script>
@@ -74,7 +89,7 @@
                                     </form>
                                     </td>';
                                 } else if ($key == "gene_seq") {
-                                    echo '<td style="word-break: break-all" width="33%" >'.$value.'</td>';
+                                    echo '<td style="word-break: break-all" width="500px" >'.$value.'</td>';
                                 } else if ($key == "gene_operon") {
                                     echo '<td style="word-break: break-all" width="10%" >'.$value.'</td>';
                                 } else {

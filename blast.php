@@ -93,8 +93,8 @@
                             "searching": false,
                             dom: 'Bfrtip',
                             buttons: [
-                                'copy', 'csv', 'pdf'
-                            ]
+                                { extend: 'csv', text: 'Download as CSV' }
+                            ],
                         });
                     } );
                     </script>
