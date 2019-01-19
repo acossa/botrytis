@@ -6,3 +6,6 @@ BcDb is a website project done for a web programming class. It aims to use the o
 - Generic informations about gene and protein sequences of *B. cinerea*.
 - BLASTn and BLASTp against the genes and proteins of the database.
 - ... WORK IN PROGRESS ...
+
+## Database UML
+![This is the database UML](https://github.com/4N701N3/botrytis/data/UML_BcDb.png)
